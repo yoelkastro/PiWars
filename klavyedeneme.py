@@ -1,12 +1,9 @@
 from pololu_drv8835_rpi import motors
 import math
-import sys
 import keyboard
 
 lx = 0
 ly = 0
-i = 0
-
 
 def getValue(x, y, t):
     if(t):
@@ -21,22 +18,25 @@ def getValue(x, y, t):
             return (int)((-y - x) * 480)
 
 while True:
-    record = False
-
+    #raise RuntimeException('bu nasil hayat')
     ly = 0
-    if(keyboard.is_pressed('w')):
-        print("forward")
-        ly = -1
-    elif(keyboard.is_pressed('s')):
-        print("backward")
-        ly = 1
-
+    try:
+        if(keyboard.is_pressed('up')):
+            #print("forward")
+            ly = -1
+        elif(keyboard.is_pressed('down')):
+            #print("backward")
+            ly = 1
+    except:
+        print("hata")
     lx = 0
-    if(keyboard.is_pressed('a')):
-        print("right")
-        lx = -1
-    elif(keyboard.is_pressed('d')):
-        print("left")
-        lx = 1
-     
+    try:
+        if(keyboard.is_pressed('right')):
+            #print("right")
+            lx = 1
+        elif(keyboard.is_pressed('left')):
+            #print("left")
+            lx = -1
+    except:
+         print("hata")
     motors.setSpeeds(getValue(lx, ly, True), getValue(lx, ly, False))
