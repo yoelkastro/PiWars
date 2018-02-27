@@ -3,19 +3,30 @@ import math
 import keyboard
 
 while True:
-
+    direct = 0
     try:
         if(keyboard.is_pressed('up')):
             print("forward")
-            motors.setSpeeds(480, 480)
+            direct = 1
         elif(keyboard.is_pressed('down')):
             print("backward")
-            motors.setSpeeds(-480, -480)
+            direct = 2
         elif(keyboard.is_pressed('right')):
             print("left")
-            motors.setSpeeds(480, -480)
+            direct = 3
         elif(keyboard.is_pressed('left')):
             print("left")
-            motors.setSpeeds(-480, 480)
+            direct = 4
     except:
-        print("Tanım dışı klavye tuşu")
+        print("Tanim disi klavye tusu")
+    
+    if(direct == 0):
+        motors.setSpeeds(0, 0)
+    elif(direct == 1):
+        motors.setSpeeds(480, 480)
+    elif(direct == 2):
+        motors.setSpeeds(-480, -480)
+    elif(direct == 3):
+        motors.setSpeeds(480, -480)
+    elif(direct == 4):
+        motors.setSpeeds(-480, 480)
